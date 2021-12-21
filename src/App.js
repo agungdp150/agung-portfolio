@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { Homepage } from './components/pages'
+import Sidenav from './components/ui-components/Sidenav'
+import { createStyles, makeStyles } from '@mui/styles';
+import Box from '@mui/material/Box';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    container: {     
+      display: 'flex'
+    },
+    content: {
+      padding: 24,
+      maxWidth: '1248px',
+      margin: '16px 0px 0px 40px'
+    }
+  }),
+);
 
 function App() {
+  const classes = useStyles()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>          
+      <Box className={classes.container}>
+        <Sidenav/>
+        <Box className={classes.content}>
+          <Routes>                                
+            <Route path="/" element={<Homepage/>} />            
+          </Routes>      
+        </Box>
+      </Box>            
+    </BrowserRouter>    
   );
 }
 
